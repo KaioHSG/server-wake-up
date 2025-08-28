@@ -14,4 +14,4 @@ jobs:
           curl --request GET \
             --header "apikey: ${{ secrets.SUPABASE_API_KEY }}" \
             --header "Authorization: Bearer ${{ secrets.SUPABASE_API_KEY }}" \
-            "${{ secrets.SUPABASE_URL }}/rest/v1/${{ secrets.TABLE_NAME }}?limit=1"
+            "${{ secrets.SUPABASE_URL }}/rest/v1/ping?limit=1"
