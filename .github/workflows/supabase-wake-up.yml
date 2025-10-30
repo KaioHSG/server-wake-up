@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: WAKE_UP
     steps:
-      - name: Send Ping to Supabase API
+      - name: Send request to Supabase API
         run: |
           curl --request GET --header "apikey: ${{ secrets.SUPABASE_API_KEY }}" --header "Authorization: Bearer ${{ secrets.SUPABASE_API_KEY }}" "${{ secrets.SUPABASE_URL }}/rest/v1/ping?limit=1"
