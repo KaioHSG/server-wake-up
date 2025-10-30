@@ -9,23 +9,16 @@ jobs:
   ping_render:
     runs-on: ubuntu-latest
     environment: WAKE_UP
-    
-    steps:
-      - name: Send Ping to Render WebSocket
-        run: |
-          pip install websocket-client --quiet --no-cache-dir
-          python -c "
-import websocket
-import ssl
-import os
 
-url = os.environ.get('RENDER_URL')
-try:
-    ws = websocket.create_connection(url, timeout=3, sslopt={'cert_reqs': ssl.CERT_NONE}) 
-    ws.close()
-except:
-    pass
-" || true
+    steps:
+      - name: 1. Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' 
+
+      - name: 2. Install wscat
+        run: npm install -g wscat
         
-        env:
-          RENDER_URL: ${{ secrets.RENDER_URL }}
+      - name: 3. Send Ping to Render WebSocket
+        run: |
+          wscat -c "${{ secrets.RENDER_URL }}" || true
