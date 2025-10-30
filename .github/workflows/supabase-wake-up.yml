@@ -11,7 +11,4 @@ jobs:
     steps:
       - name: Send Ping to Supabase API
         run: |
-          curl --request GET \
-            --header "apikey: ${{ secrets.SUPABASE_API_KEY }}" \
-            --header "Authorization: Bearer ${{ secrets.SUPABASE_API_KEY }}" \
-            "${{ secrets.SUPABASE_URL }}/rest/v1/ping?limit=1"
+          curl --request GET --header "apikey: ${{ secrets.SUPABASE_API_KEY }}" --header "Authorization: Bearer ${{ secrets.SUPABASE_API_KEY }}" "${{ secrets.SUPABASE_URL }}/rest/v1/ping?limit=1"
