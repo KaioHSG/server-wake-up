@@ -1,4 +1,4 @@
-name: Render Wake Up
+name: Render Wake-Up
 
 on:
   schedule:
