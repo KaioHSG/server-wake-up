@@ -1,23 +1,23 @@
-name: Render Wake-up
+# Nome do Workflow que aparecerá na aba "Actions" do GitHub
+name: Keep Render Backend Alive
 
 on:
-  schedule:
-    - cron: '*/12 * * * *'
+  # Permite que você rode este workflow manualmente a partir da aba Actions
   workflow_dispatch:
 
+  schedule:
+    # Roda a cada 13 minutos. A sintaxe é CRON.
+    # */13 significa "a cada 13 minutos". Os outros * são para hora, dia, mês e dia da semana.
+    - cron: '*/13 * * * *'
+
 jobs:
-  ping_render:
-    runs-on: ubuntu-latest
+  ping:
+    runs-on: ubuntu-latest # Usa a última versão estável do Ubuntu como ambiente de execução
     environment: WAKE_UP
 
     steps:
-      - name: 1. Setup Node.js Environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20' 
-
-      - name: 2. Install wscat
-        run: npm install -g wscat
-        
-      - name: 3. Send Ping to Render WebSocket
-        run: wscat -c "${{ secrets.RENDER_URL }}"
+      - name: Send request to Render backend
+        # Usa a ferramenta 'curl' para fazer uma requisição HTTP.
+        # --fail faz com que o passo falhe se o servidor retornar um erro (status code diferente de 2xx).
+        # Isso é útil para saber se o seu backend está com problemas.
+        run: curl --fail "${{ secrets.RENDER_URL }}"
