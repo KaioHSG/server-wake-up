@@ -1,4 +1,4 @@
-name: Render Wake-up
+name: Render Wake-up Ping (Minimal)
 
 on:
   schedule:
@@ -9,7 +9,23 @@ jobs:
   ping_render:
     runs-on: ubuntu-latest
     environment: WAKE_UP
+    
     steps:
-      - name: Send Ping to Render Web Service
+      - name: Send Silent WebSocket Ping
         run: |
-          curl -sS "${{ secrets.RENDER_URL }}"
+          pip install websocket-client --quiet --no-cache-dir
+          python -c "
+import websocket
+import ssl
+import os
+
+url = os.environ.get('RENDER_URL')
+try:
+    ws = websocket.create_connection(url, timeout=3, sslopt={'cert_reqs': ssl.CERT_NONE}) 
+    ws.close()
+except:
+    pass
+" || true
+        
+        env:
+          RENDER_URL: ${{ secrets.RENDER_URL }}
