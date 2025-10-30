@@ -1,16 +1,14 @@
 name: Render Wake Up
 
 on:
-  workflow_dispatch:
-
   schedule:
     - cron: '*/13 * * * *'
 
 jobs:
-  ping:
+  ping_render:
     runs-on: ubuntu-latest
-    environment: WAKE_UP
-
+    environment: Render
     steps:
-      - name: Send request to Render
-        run: curl -s -o /dev/null --fail "${{ secrets.RENDER_URL }}"
+    
+      - name: Send request to Render 1
+        run: curl -s -o /dev/null --fail "${{ secrets.RENDER_URL_1 }}"
