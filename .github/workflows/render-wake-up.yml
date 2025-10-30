@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Send Ping to Render Web Service
         run: |
-          curl -sS "${{ secrets.RENDER_SERVICE_URL }}"
+          curl -sS "${{ secrets.RENDER_URL }}"
