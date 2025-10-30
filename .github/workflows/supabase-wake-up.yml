@@ -8,7 +8,7 @@ on:
 jobs:
   ping_supabase:
     runs-on: ubuntu-latest
-    enviroment: WAKE_UP
+    environment: WAKE_UP
     steps:
       - name: Send Ping to Supabase API
         run: |
