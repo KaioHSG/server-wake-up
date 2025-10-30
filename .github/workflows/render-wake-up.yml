@@ -20,5 +20,4 @@ jobs:
         run: npm install -g wscat
         
       - name: 3. Send Ping to Render WebSocket
-        run: |
-          wscat -c "${{ secrets.RENDER_URL }}" || true
+        run: wscat -c "${{ secrets.RENDER_URL }}"
