@@ -1,4 +1,4 @@
-name: Render Wake-up Ping (Minimal)
+name: Render Wake-up
 
 on:
   schedule:
@@ -11,7 +11,7 @@ jobs:
     environment: WAKE_UP
     
     steps:
-      - name: Send Silent WebSocket Ping
+      - name: Send Ping to Render WebSocket
         run: |
           pip install websocket-client --quiet --no-cache-dir
           python -c "
