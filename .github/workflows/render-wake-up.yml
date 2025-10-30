@@ -12,4 +12,4 @@ jobs:
     steps:
     
       - name: Send request to Render 1
-        run: curl -I --fail "${{ secrets.RENDER_URL_1 }}"
+        run: curl -s -o /dev/null --fail "${{ secrets.RENDER_URL_1 }}"
