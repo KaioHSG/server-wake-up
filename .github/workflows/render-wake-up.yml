@@ -1,23 +1,16 @@
-# Nome do Workflow que aparecerá na aba "Actions" do GitHub
-name: Keep Render Backend Alive
+name: Render Wake Up
 
 on:
-  # Permite que você rode este workflow manualmente a partir da aba Actions
   workflow_dispatch:
 
   schedule:
-    # Roda a cada 13 minutos. A sintaxe é CRON.
-    # */13 significa "a cada 13 minutos". Os outros * são para hora, dia, mês e dia da semana.
     - cron: '*/13 * * * *'
 
 jobs:
   ping:
-    runs-on: ubuntu-latest # Usa a última versão estável do Ubuntu como ambiente de execução
+    runs-on: ubuntu-latest
     environment: WAKE_UP
 
     steps:
-      - name: Send request to Render backend
-        # Usa a ferramenta 'curl' para fazer uma requisição HTTP.
-        # --fail faz com que o passo falhe se o servidor retornar um erro (status code diferente de 2xx).
-        # Isso é útil para saber se o seu backend está com problemas.
+      - name: Send request to Render
         run: curl -s -o /dev/null --fail "${{ secrets.RENDER_URL }}"
