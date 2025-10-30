@@ -20,4 +20,4 @@ jobs:
         # Usa a ferramenta 'curl' para fazer uma requisição HTTP.
         # --fail faz com que o passo falhe se o servidor retornar um erro (status code diferente de 2xx).
         # Isso é útil para saber se o seu backend está com problemas.
-        run: curl --fail "${{ secrets.RENDER_URL }}"
+        run: curl -s -o /dev/null --fail "${{ secrets.RENDER_URL }}"
