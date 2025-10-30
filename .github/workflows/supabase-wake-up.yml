@@ -11,5 +11,6 @@ jobs:
     environment: Supabase
     steps:
       - name: Send request to Supabase 1
+      
         run: |
           curl --request GET --header "apikey: ${{ secrets.SUPABASE_API_KEY_1 }}" --header "Authorization: Bearer ${{ secrets.SUPABASE_API_KEY_1 }}" "${{ secrets.SUPABASE_URL_1 }}/rest/v1/ping?limit=1"
